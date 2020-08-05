@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
+import json
 
 # configuration
 DEBUG = True
@@ -20,7 +21,7 @@ def ping_pong():
 @app.route('/getData')
 def read_json():
     with open('data.txt', 'r') as data_file:
-        return jsonify(data_file.read())
+        return jsonify(eval(data_file.read()))
 
 
 if __name__ == '__main__':
