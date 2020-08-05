@@ -24,28 +24,43 @@ class WeekDisplay extends Component {
       });
   }
 
-  getCurrentTime = () => {
-    return moment().format("YYYY-MM-DD");
-  };
-
-  findClosestDate = date => {
-    let dateArray = this.state.data;
-    let soughtIndex = 0;
-    for (var i = 0; i < dateArray.length; i++) {}
-  };
-
   test = () => {
-    var a = moment("2020-07-11", "YYYY-MM-DD");
-    var b = moment("2020-07-10", "YYYY-MM-DD");
-    return a.diff(b, "days");
+    let data = this.state.data;
+    let currentDate = moment("2021-01-09");
+    let soughtDateType = "";
+    let soughtDateWeekDiff = 1000;
+    Object.keys(data).forEach(key => {
+      let compDate = moment(key).format("YYYY-MM-DD")
+      if (currentDate.isSame(compDate)) {
+        soughtDateType = data[key]
+        soughtDateWeekDiff = 0
+      }
+      else if (currentDate.isAfter(compDate)) {
+        if (currentDate.diff(compDate, 'weeks') < soughtDateWeekDiff) {
+          soughtDateType = data[key];
+          soughtDateWeekDiff = currentDate.diff(compDate, 'weeks');
+        }
+      }
+    })
+    return {"weekDiff": soughtDateWeekDiff + 1, "type": soughtDateType};
   };
 
   render() {
-    console.log(this.test());
-    console.log(this.state);
+    let weekDiffAndType = this.test();
+    console.log(weekDiffAndType);
+    let text = "";
+    if (weekDiffAndType.type == "study_period" && weekDiffAndType.weekDiff <= 8) {
+      text = weekDiffAndType.weekDiff.toString();
+    } else if (weekDiffAndType.type == "exam_period") {
+      text = "Tentavecka";
+    }
+    else {
+      text = "Självstudier";
+    }
+
     return (
       <div className="WeekDisplay">
-        <p className="WeekDisplayText"> {moment().week()}</p>
+        <p className="WeekDisplayText"> {text}</p>
       </div>
     );
   }

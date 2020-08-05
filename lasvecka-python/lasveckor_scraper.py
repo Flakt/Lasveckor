@@ -23,10 +23,10 @@ for line in text:
             # print(text[current_line + 2].string)
             # data.append((text[current_line + 2].string, "exam_period"))
             data[text[current_line + 2].string] = "exam_period"
-        if "Omtentamensperiod" in line.string:
+        # if "Omtentamensperiod" in line.string:
             # print(text[current_line + 2].string)
             # data.append((text[current_line + 2].string, "reexam_period"))
-            data[text[current_line + 2].string] = "reexam_period"
+            # data[text[current_line + 2].string] = "reexam_period"
     current_line = current_line + 1
 with open('data.txt', 'w') as outfile:
     outfile.write(json.dumps(data))
