@@ -24,9 +24,12 @@ class WeekDisplay extends Component {
       });
   }
 
-  test = () => {
+  getCurrentDate = () => {
+    return moment();
+  }
+
+  getWeekDiffAndType = currentDate => {
     let data = this.state.data;
-    let currentDate = moment("2021-01-09");
     let soughtDateType = "";
     let soughtDateWeekDiff = 1000;
     Object.keys(data).forEach(key => {
@@ -43,24 +46,38 @@ class WeekDisplay extends Component {
       }
     })
     return {"weekDiff": soughtDateWeekDiff + 1, "type": soughtDateType};
-  };
+  }
 
-  render() {
-    let weekDiffAndType = this.test();
-    console.log(weekDiffAndType);
-    let text = "";
-    if (weekDiffAndType.type == "study_period" && weekDiffAndType.weekDiff <= 8) {
-      text = weekDiffAndType.weekDiff.toString();
-    } else if (weekDiffAndType.type == "exam_period") {
-      text = "Tentavecka";
+  genText = () => {
+    let currentDate = moment("2021-05-31");
+    if (currentDate.isBetween("2021-04-01", "2021-04-10")) {
+      return "Självstudier";
+    }
+    else if (currentDate.isSameOrAfter("2021-04-09")) {
+      let diff = currentDate.diff("2021-04-05", 'weeks');
+      console.log(diff);
+      if (diff >= 8) {
+        return "Tentavecka";
+      }
+      return (diff + 1).toString();
     }
     else {
-      text = "Självstudier";
+      let weekDiffAndType = this.getWeekDiffAndType(currentDate);
+      if (weekDiffAndType.type == "study_period" && weekDiffAndType.weekDiff <= 8) {
+        return weekDiffAndType.weekDiff.toString();
+      } else if (weekDiffAndType.type == "exam_period") {
+        return "Tentavecka";
+      }
+      else {
+        return "Självstudier";
+      }
     }
+  }
 
+  render() {
     return (
       <div className="WeekDisplay">
-        <p className="WeekDisplayText"> {text}</p>
+        <p className="WeekDisplayText"> {this.genText()}</p>
       </div>
     );
   }
