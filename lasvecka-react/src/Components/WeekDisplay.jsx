@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import moment from "moment";
 
+const easterStart = "2021-04-01";
+
+const easterEnd = "2021-04-10";
+
 class WeekDisplay extends Component {
   constructor(props) {
     super(props);
@@ -50,16 +54,16 @@ class WeekDisplay extends Component {
 
   genText = () => {
     let currentDate = moment("2021-05-31");
-    if (currentDate.isBetween("2021-04-01", "2021-04-10")) {
+    if (currentDate.isBetween(easterStart, easterEnd)) {
       return "Självstudier";
     }
-    else if (currentDate.isSameOrAfter("2021-04-09")) {
-      let diff = currentDate.diff("2021-04-05", 'weeks');
+    else if (currentDate.isSameOrAfter(moment(easterEnd))) {
+      let diff = currentDate.diff("2021-04-12", 'weeks');
       console.log(diff);
-      if (diff >= 8) {
+      if (diff >= 7) {
         return "Tentavecka";
       }
-      return (diff + 1).toString();
+      return (diff + 2).toString();
     }
     else {
       let weekDiffAndType = this.getWeekDiffAndType(currentDate);
