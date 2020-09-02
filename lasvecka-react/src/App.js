@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import WeekDisplay from "./Components/WeekDisplay";
 import "./App.css";
 
