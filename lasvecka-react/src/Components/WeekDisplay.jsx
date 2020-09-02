@@ -53,13 +53,12 @@ class WeekDisplay extends Component {
   }
 
   genText = () => {
-    let currentDate = moment("2021-05-31");
+    let currentDate = moment();
     if (currentDate.isBetween(easterStart, easterEnd)) {
       return "Självstudier";
     }
     else if (currentDate.isSameOrAfter(moment(easterEnd))) {
       let diff = currentDate.diff("2021-04-12", 'weeks');
-      console.log(diff);
       if (diff >= 7) {
         return "Tentavecka";
       }
