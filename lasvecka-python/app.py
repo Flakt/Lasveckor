@@ -1,9 +1,10 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
+from waitress import serve
 import json
 
 # configuration
-DEBUG = True
+DEBUG = False
 
 # init app
 app = Flask(__name__)
@@ -20,4 +21,8 @@ def read_json():
 
 # http://localhost:5000
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+    # Dev purposes only
+    # app.run(host="0.0.0.0")
+
+    # For prod
+    serve(app, listen='0.0.0.0:5000')
