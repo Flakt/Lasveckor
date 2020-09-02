@@ -10,7 +10,7 @@ soup = BeautifulSoup(response.text, "html.parser")
 
 text = soup.findAll('span')
 
-
+# For debugging purposes
 def test_scrape():
     # Test the output of scraper
     current_line = 0
@@ -21,6 +21,9 @@ def test_scrape():
         current_line = current_line + 1
 
 
+# Iterate through text to find specific lines which are then used to determine
+# the position of sought dates. Dumps the results as a json-formatted object
+# in source directory in a txt file
 def scrape():
     # Store dates when a period starts
     data = {}
@@ -45,4 +48,5 @@ def scrape():
 
 
 if __name__ == '__main__':
-    test_scrape()
+    # test_scrape()
+    scrape()
