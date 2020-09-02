@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import moment from "moment";
 
+/*
+  Hardcoded values because easter periods are inconsistent when trying to
+  scrape. Replace/Rewrite if a consistent method to determine LP4 self-study
+  periods is found.
+*/
 const easterStart = "2021-04-01";
 
 const easterEnd = "2021-04-10";
@@ -15,6 +20,8 @@ class WeekDisplay extends Component {
     };
   }
 
+  // React hook to rerender the page when data is successfully loaded from
+  // backend
   componentDidMount() {
     axios
       .get("http://localhost:5000/getData")
@@ -32,6 +39,11 @@ class WeekDisplay extends Component {
     return moment();
   }
 
+  /*
+    Determine what type of period it currently is and which week if it's
+    study period. Returns a dictionary containing the type of period and
+    number of weeks after the period started.
+  */
   getWeekDiffAndType = currentDate => {
     let data = this.state.data;
     let soughtDateType = "";
@@ -52,11 +64,16 @@ class WeekDisplay extends Component {
     return {"weekDiff": soughtDateWeekDiff + 1, "type": soughtDateType};
   }
 
+  /*
+    Generates the text to be rendered on the webpage, checks first if it's
+    easter since it needs to be handled differently from normal use cases.
+  */
   genText = () => {
     let currentDate = moment();
     if (currentDate.isBetween(easterStart, easterEnd)) {
       return "Självstudier";
     }
+    // Compensate for having to skip a week
     else if (currentDate.isSameOrAfter(moment(easterEnd))) {
       let diff = currentDate.diff("2021-04-12", 'weeks');
       if (diff >= 7) {
