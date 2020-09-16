@@ -2,22 +2,22 @@ version: '3'
 
 services:
   backend:
-    container_name: lasveckor-python
+    container_name: lasvecka-python
     build:
       context: ./lasvecka-python
-      dockerfile: Dockerfile
+      dockerfile: dev.Dockerfile
     ports:
       - 5000:5000
     volumes:
-      - ./lasvecka-python:/backend
+      - ./backend:/lasvecka-python
 
   frontend:
-    container_name: lasveckor-react
+    container_name: lasvecka-react
     build:
       context: ./lasvecka-react
-      dockerfile: Dockerfile
+      dockerfile: prod.Dockerfile
     ports:
-      - 3000:3000
+      - 80:80
     stdin_open: true
     volumes:
-      - ./lasvecka-react:/frontend
+      - ./frontend:/usr/src/lasveckor/frontend

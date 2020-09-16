@@ -84,7 +84,7 @@ class WeekDisplay extends Component {
     else {
       let weekDiffAndType = this.getWeekDiffAndType(currentDate);
       if (weekDiffAndType.type == "study_period" && weekDiffAndType.weekDiff <= 8) {
-        return weekDiffAndType.weekDiff.toString();
+        return ("Lv " + weekDiffAndType.weekDiff.toString());
       } else if (weekDiffAndType.type == "exam_period") {
         return "Tentavecka";
       }
