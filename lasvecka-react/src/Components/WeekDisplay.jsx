@@ -11,6 +11,9 @@ const easterStart = "2021-04-01";
 
 const easterEnd = "2021-04-10";
 
+// To set date calculations to the start of the week
+const easterEndDiff = "2021-04-12";
+
 class WeekDisplay extends Component {
   constructor(props) {
     super(props);
@@ -75,7 +78,7 @@ class WeekDisplay extends Component {
     }
     // Compensate for having to skip a week
     else if (currentDate.isSameOrAfter(moment(easterEnd))) {
-      let diff = currentDate.diff("2021-04-12", 'weeks');
+      let diff = currentDate.diff(easterEndDiff, 'weeks');
       if (diff >= 7) {
         return "Tentavecka";
       }
