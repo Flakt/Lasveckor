@@ -16,8 +16,13 @@ services:
     build:
       context: ./lasvecka-react
       dockerfile: prod.Dockerfile
-    ports:
-      - 3000:80
     stdin_open: true
+    network_mode: "nginxreverseproxy_default"
+    ports:
+      - 3000:3000
     volumes:
       - ./frontend:/usr/src/lasveckor/frontend
+    environment:
+      VIRTUAL_HOST: test.chs.se
+      VIRTUAL_PORT: 3000
+      LETSENCRYPT_HOST: test.chs.se
