@@ -28,7 +28,7 @@ class WeekDisplay extends Component {
   // Replace 129.16.159.15 with localhost when in dev mode
   componentDidMount() {
     axios
-      .get("http://129.16.159.15:5000/getData")
+      .get("https://129.16.159.15:5000/getData")
       .then(res => {
         this.setState({
           data: res.data
