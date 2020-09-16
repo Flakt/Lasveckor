@@ -19,7 +19,7 @@ services:
     stdin_open: true
     network_mode: "nginxreverseproxy_default"
     ports:
-      - 3000:3000
+      - 3000:80
     volumes:
       - ./frontend:/usr/src/lasveckor/frontend
     environment:
