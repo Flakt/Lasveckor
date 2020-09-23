@@ -25,9 +25,10 @@ class WeekDisplay extends Component {
 
   // React hook to rerender the page when data is successfully loaded from
   // backend
+  // Use localhost:5000/getData for dev
   componentDidMount() {
     axios
-      .get("https://localhost:5000/getData")
+      .get("http://api.lasvecka.nu/getData")
       .then(res => {
         this.setState({
           data: res.data
