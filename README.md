@@ -2,7 +2,8 @@
 A web-application  for displaying the current study week at Chalmers University of Technology. 
 
 ## How it works
-The application is divided into a frontend running React.js, and a backend hosting a python-flask server. The backend scrapes the [student-portal] (https://student.portal.chalmers.se/sv/chalmersstudier/Sidor/Lasarstider.aspx) at Chalmers to get dates, which are then used in the frontend to determine the current study week.
+The application is divided into a frontend running React.js, and a backend hosting a python-flask server. The backend scrapes the 
+[student-portal](https://student.portal.chalmers.se/sv/chalmersstudier/Sidor/Lasarstider.aspx) at Chalmers to get dates, which are then used in the frontend to determine the current study week.
 
 ## Running the app locally
 First, change the code in `WeekDisplay.js` and `app.py` to use localhost:
