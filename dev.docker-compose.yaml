@@ -6,6 +6,8 @@ services:
     build:
       context: ./lasvecka-python
       dockerfile: dev.Dockerfile
+    ports:
+      - 5000:5000
     volumes:
       - ./backend:/lasvecka-python
 
@@ -15,5 +17,7 @@ services:
       context: ./lasvecka-react
       dockerfile: dev.Dockerfile
     stdin_open: true
+    ports:
+      - 3000:80
     volumes:
       - ./frontend:/usr/src/lasveckor/frontend
