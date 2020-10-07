@@ -11,7 +11,7 @@ const easterStart = "2021-04-01";
 
 const easterEnd = "2021-04-10";
 
-// To set date calculations to the start of the week
+// To set date calculations to the start of the week for easter
 const easterEndDiff = "2021-04-12";
 
 class WeekDisplay extends Component {
@@ -38,6 +38,8 @@ class WeekDisplay extends Component {
         console.log(err);
       });
   }
+
+
 
   getCurrentDate = () => {
     return moment();
@@ -83,7 +85,7 @@ class WeekDisplay extends Component {
       if (diff >= 7) {
         return "Tentavecka";
       }
-      return (diff + 2).toString();
+      return "Lv " + ((diff + 2).toString());
     }
     else {
       let weekDiffAndType = this.getWeekDiffAndType(currentDate);
@@ -93,7 +95,15 @@ class WeekDisplay extends Component {
         return "Tentavecka";
       }
       else {
-        return "Självstudier";
+        // A hack for not returning Självstudier if data hasn't been loaded
+        // from the backend yet.
+        let data = this.state.data
+        if (data !== 'undefined' && data.length > 0) {
+          return "Självstudier";
+        }
+        else {
+          return "";
+        }
       }
     }
   }
