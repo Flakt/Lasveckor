@@ -28,7 +28,7 @@ class WeekDisplay extends Component {
   // Use localhost:5000/getData for dev
   componentDidMount() {
     axios
-      .get("http://localhost:5000/getData")
+      .get("http://api.lasvecka.nu/getData")
       .then(res => {
         this.setState({
           data: res.data
