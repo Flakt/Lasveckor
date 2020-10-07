@@ -30,4 +30,4 @@ First, change the code in `WeekDisplay.js` and `app.py` to use localhost:
       # For prod
       serve(app, listen='0.0.0.0:5000')
 ```
-Use command `docker-compose up` to run the dev docker-compose.yml.
+Use command `docker-compose -f dev.docker-compose.yaml up` to run the dev docker-compose.yml.
